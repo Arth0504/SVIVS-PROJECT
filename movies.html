@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mojila - BookMyShow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #1c1c1c;
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .left img {
+            height: 50px;
+            margin-right: 20px;
+        }
+
+        .header .left input {
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .header .right p {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .header .right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .right .location {
+            margin-right: 20px;
+            color: white;
+        }
+
+        .header .right button {
+            background-color: #e50914;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .header .right button:hover {
+            background-color: #d40813;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            background-color: #222;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .nav-bar .left a,
+        .nav-bar .right a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-bar .left a:hover,
+        .nav-bar .right a:hover {
+            background-color: #e50914;
+        }
+
+        /* Banner Section */
+        .banner-section {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+
+        .banner-slides {
+            display: flex;
+            width: 500%;
+            transition: transform 1s ease-in-out;
+        }
+
+        .banner-slides img {
+            width: 20%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-nav-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .banner-nav-buttons button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .banner-nav-buttons button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Upcoming Movies Section */
+        .movies-section {
+            padding: 2rem;
+            background-color: white;
+        }
+
+        .movies-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: #e50914;
+        }
+
+        .explore-link {
+            text-align: center;
+            display: block;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: #e50914;
+            text-decoration: none;
+        }
+
+        .movie-cards {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .movie-card {
+            width: 250px;
+            height: 350px;
+            background: #1c1c1c;
+            border-radius: 10px;
+            overflow: hidden;
+            color: white;
+            margin: 10px;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 75%;
+            object-fit: cover;
+        }
+
+        .movie-card h3 {
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .movie-card .book-now-btn {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #e50914;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 0 0 10px 10px;
+            transition: background-color 0.3s;
+        }
+
+        .movie-card:hover .book-now-btn {
+            display: block;
+        }
+
+        .movie-card .book-now-btn:hover {
+            background-color: #d40813;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-bar {
+                flex-direction: column;
+            }
+
+            .movies-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .movie-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="header">
+    <div class="left">
+        <img src="Mojila Logo.png" alt="Logo">
+        <input type="text" placeholder="Search for Movies, Events, Plays, and More">
+    </div>
+    <div class="right">
+        <p class="location">Location: Ahmedabad</p>
+        <button>Sign In</button>
+    </div>
+</header>
+
+<!-- Navigation Bar -->
+<nav class="nav-bar">
+    <div class="left">
+        <a href="movies.html">Movies</a>
+        <a href="stream.html">Stream</a>
+        <a href="events.html">Events</a>
+        <a href="plays.html">Plays</a>
+        <a href="sports.html">Sports</a>
+        <a href="activities.html">Activities</a>
+        <a href="buzz.html">Buzz</a>
+    </div>
+    <div class="right">
+        <a href="list-your-show.html">List Your Show</a>
+        <a href="corporates.html">Corporates</a>
+        <a href="offers.html">Offers</a>
+        <a href="gift-cards.html">Gift Cards</a>
+    </div>
+</nav>
+
+<!-- Banner Section -->
+<section class="banner-section">
+    <div class="banner-slides">
+        <img src="Banneranimation1.jpeg" alt="Event 1">
+        <img src="banner2 (1).jpeg" alt="Event 2">
+        <img src="banneranimation2.jpeg" alt="Event 3">
+    </div>
+    <div class="banner-nav-buttons">
+        <button id="prevBtn">←</button>
+        <button id="nextBtn">→</button>
+    </div>
+</section>
+
+<!-- Upcoming Movies Section -->
+<section class="movies-section">
+    <a href="movies.html" class="explore-link">Explore the Upcoming Movies</a>
+    <h2>Recommended Movies</h2>
+    <div class="movie-cards">
+        <!-- Movie Card 1 -->
+       <!-- Movie Card 1 (Singham Again) -->
+<div class="movie-card">
+    <a href="Singhamagain.html">
+        <img src="sa.jpg" alt="Singham Again Movie Poster">
+        <h3>Singham Again</h3>
+    </a>
+    <a href="cinema-selection.html" class="book-now-btn">Book Now</a>
+</div>
+
+        <!-- Movie Card 2 -->
+        <div class="movie-card">
+            <a href="Bhoolbhoolayia3.html">
+            <img src="Bhool_Bhulaiyaa_3_poster.jpg.jpeg" alt="Movie 2">
+            <h3>Bhool Bhulaiyaa 3</h3>
+        </a>
+            <a href="cinema-selection.html" class="book-now-btn">Book Now</a>
+        </div>
+        <!-- Movie Card 3 -->
+        <div class="movie-card">
+            <a href="mona2.html">
+            <img src="mona.jpeg" alt="Movie 3">
+            <h3>Mona-2</h3>
+            </a>
+            <a href="cinema-selection.html" class="book-now-btn">Book Now</a>
+            
+        </div>
+        <!-- Movie Card 4 -->
+        <div class="movie-card">
+            <a href="hahakar.html">
+            <img src="Hahakar.jpeg" alt="Movie 4">
+            <h3>Hahakar</h3>
+        </a>
+            <a href="cinema-selection.html" class="book-now-btn">Book Now</a>
+        </div>
+        <!-- Movie Card 5 (Pushpa-2) -->
+        <div class="movie-card">
+            <a href="pushpa.html">
+            <img src="pushpa.jpeg" alt="Movie 5">
+            <h3>Pushpa-2</h3>
+        </a>
+            <a href="cinema-selection.html" class="book-now-btn">Book Now</a>
+        </div>
+        <!-- Movie Card 6 (Sabarmati-Report) -->
+        <div class="movie-card">
+            <a href="Sabarmati report.html">
+            <img src="Sabarmati-Report.jpeg" alt="Movie 6">
+            <h3>Sabarmati-Report</h3>
+            </a>
+            <a href="cinema-selection.html" class="book-now-btn">Book Now</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    let currentIndex = 0;
+    const slides = document.querySelector('.banner-slides');
+    const totalSlides = document.querySelectorAll('.banner-slides img').length;
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    });
+</script>
+
+</body>
+</html>

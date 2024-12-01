@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hahakar - Gujarati Film</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1c1c1c;
+            padding: 1rem 2rem;
+        }
+
+        .header img {
+            width: 150px;
+        }
+
+        .header input {
+            width: 400px;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .header button {
+            background-color: #e50914;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .header button:hover {
+            background-color: #d40813;
+        }
+
+        .location {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-right: 2rem;
+        }
+
+        /* Second Navigation Bar */
+        .second-nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 1rem;
+            color: white;
+        }
+
+        .second-nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1rem;
+        }
+
+        .second-nav a:hover {
+            color: #e50914;
+        }
+
+        /* Movie Banner */
+        .movie-banner {
+            width: 100%;
+            height: 400px;
+            background-image: url('hahakar-banner.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Movie Info Section */
+        .movie-info {
+            padding: 2rem;
+            background-color: white;
+            margin: 2rem;
+            border-radius: 10px;
+        }
+
+        .movie-info h1 {
+            font-size: 2.5rem;
+            color: #e50914;
+            margin-bottom: 1rem;
+        }
+
+        .movie-info p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .movie-info .star-cast, .movie-info .director {
+            margin-top: 2rem;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 2rem;
+            color: #bbb;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .rating input:checked ~ label {
+            color: #ff4f00;
+        }
+
+        .rating label:hover,
+        .rating label:active {
+            color: #ff4f00;
+        }
+
+        .submit-rating-btn {
+            background-color: #e50914;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 2rem;
+            transition: background-color 0.3s;
+        }
+
+        .submit-rating-btn:hover {
+            background-color: #d40813;
+        }
+
+        .book-tickets-btn {
+            background-color: #e50914;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            text-decoration: none;
+        }
+
+        .book-tickets-btn:hover {
+            background-color: #d40813;
+        }
+
+        /* You Might Also Like Section */
+        .you-might-like {
+            padding: 2rem;
+            background-color: white;
+        }
+
+        .you-might-like h2 {
+            font-size: 2rem;
+            color: #e50914;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .movie-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .movie-card {
+            width: 250px;
+            height: 350px;
+            background: #1c1c1c;
+            border-radius: 10px;
+            overflow: hidden;
+            color: white;
+            margin: 10px;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 75%;
+            object-fit: cover;
+        }
+
+        .movie-card h3 {
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .movie-card .book-now-btn {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #e50914;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 0 0 10px 10px;
+            transition: background-color 0.3s;
+        }
+
+        .movie-card:hover .book-now-btn {
+            display: block;
+        }
+
+        .movie-card .book-now-btn:hover {
+            background-color: #d40813;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="header">
+    <div class="left">
+        <a href="index.html"><img src="Mojila Logo.png" alt="Mojila Logo"></a>
+        <input type="text" placeholder="Search for Movies, Events, Plays, and More">
+    </div>
+    <div class="right">
+        <p class="location">Location: Ahmedabad</p>
+        <button>Sign In</button>
+    </div>
+</header>
+
+<!-- Second Navigation Bar -->
+<section class="second-nav">
+    <div class="nav-left">
+        <a href="movies.html">Movies</a>
+        <a href="#">Stream</a>
+        <a href="#">Events</a>
+        <a href="#">Plays</a>
+        <a href="#">Sports</a>
+        <a href="#">Activities</a>
+        <a href="#">Buzz</a>
+    </div>
+    <div class="nav-right">
+        <a href="#">List Your Show</a>
+        <a href="#">Corporates</a>
+        <a href="#">Offers</a>
+        <a href="#">Gift Cards</a>
+    </div>
+</section>
+
+<!-- Movie Banner -->
+<section class="movie-banner">
+    <img src="hahakar-banner.jpg" alt="Hahakar Movie Banner">
+</section>
+
+<!-- Movie Info Section -->
+<section class="movie-info">
+    <h1>Hahakar</h1>
+    <p>Hahakar is a gripping Gujarati thriller that follows the intense journey of a man caught between family secrets and the battle for survival. Set against the backdrop of suspense, every twist keeps the audience at the edge of their seats.</p>
+    
+    <!-- Star Cast and Director -->
+    <div class="star-cast">
+        <h3>Star Cast:</h3>
+        <p>Jayesh Shukla, Hemali Soni, Ankit Patel</p>
+    </div>
+    <div class="director">
+        <h3>Director:</h3>
+        <p>Sandeep Mehta</p>
+    </div>
+
+    <!-- Rating Section -->
+    <div class="rating">
+        <h3>Rate This Movie:</h3>
+        <input type="radio" id="star5" name="rating" value="5"><label for="star5">☆</label>
+        <input type="radio" id="star4" name="rating" value="4"><label for="star4">☆</label>
+        <input type="radio" id="star3" name="rating" value="3"><label for="star3">☆</label>
+        <input type="radio" id="star2" name="rating" value="2"><label for="star2">☆</label>
+        <input type="radio" id="star1" name="rating" value="1"><label for="star1">☆</label>
+    </div><br>
+
+    <!-- Submit Rating Button -->
+    <button class="submit-rating-btn">Submit Rating</button><br>
+
+    <!-- Book Tickets Button -->
+    <a href="booking-page.html" class="book-tickets-btn">Book Tickets</a>
+</section>
+
+<!-- You Might Also Like Section -->
+<section class="you-might-like">
+    <h2>You Might Also Like</h2>
+    <div class="movie-cards">
+        <!-- Movie Card 1 -->
+        <div class="movie-card">
+            <img src="Bhool_Bhulaiyaa_3_poster.jpg.jpeg" alt="Movie 1">
+            <h3>Bhool Bhulaiyaa 3</h3>
+            <a href="cinema-selection.html" class="book-now-btn">Book Now</a>
+        </div>
+        <!-- Movie Card 2 -->
+        <div class="movie-card">
+            <img src="mona.jpeg" alt="Movie 2">
+            <h3>Mona-2 2</h3>
+            <a href="cinema-selection.html" class="book-now-btn">Book Now</a>
+        </div>
+        <!-- Movie Card 3 -->
+        <div class="movie-card">
+            <img src="Sabarmati-Report.jpeg" alt="Movie 3">
+            <h3>Sabarmati-Report</h3>
+            <a href="cinema-selection.html" class="book-now-btn">Book Now</a>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

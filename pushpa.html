@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pushpa 2 - Movie Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #1c1c1c;
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .header .left img {
+            height: 50px;
+            margin-right: 20px;
+        }
+
+        .header .left input {
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .header .right p {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .header .right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .right .location {
+            margin-right: 20px;
+            color: white;
+        }
+
+        .header .right button {
+            background-color: #e50914;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .header .right button:hover {
+            background-color: #d40813;
+        }
+
+        /* Second Navigation Bar */
+        .second-nav {
+            background-color: #333;
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            position: fixed;
+            top: 60px;
+            width: 100%;
+            z-index: 9;
+        }
+
+        .second-nav .left,
+        .second-nav .right {
+            display: flex;
+        }
+
+        .second-nav .left a,
+        .second-nav .right a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .second-nav .left a:hover,
+        .second-nav .right a:hover {
+            color: #e50914;
+        }
+
+        /* Movie Details Page Styles */
+        .movie-banner {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            margin-top: 140px; /* To avoid overlap with fixed header and nav */
+        }
+
+        .movie-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .movie-info {
+            padding: 2rem;
+            background-color: white;
+            text-align: center;
+        }
+
+        .movie-info h1 {
+            font-size: 2.5rem;
+            color: #e50914;
+            margin-bottom: 1rem;
+        }
+
+        .movie-info p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .star-cast, .director {
+            margin: 1rem 0;
+        }
+
+        .rating {
+            margin-bottom: 1rem;
+        }
+
+        .rating input[type="radio"] {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 2rem;
+            color: #e50914;
+            cursor: pointer;
+        }
+
+        .rating label:hover,
+        .rating label:active {
+            color: #ff4f00;
+        }
+
+        .submit-rating-btn {
+            background-color: #e50914;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 2rem;
+            transition: background-color 0.3s;
+        }
+
+        .submit-rating-btn:hover {
+            background-color: #d40813;
+        }
+
+        .book-tickets-btn {
+            background-color: #e50914;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-top: 3rem;
+            text-decoration: none;
+        }
+
+        .book-tickets-btn:hover {
+            background-color: #d40813;
+        }
+
+        /* You Might Also Like Section */
+        .you-might-like {
+            padding: 2rem;
+            background-color: white;
+        }
+
+        .you-might-like h2 {
+            font-size: 2rem;
+            color: #e50914;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .movie-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .movie-card {
+            width: 250px;
+            height: 350px;
+            background: #1c1c1c;
+            border-radius: 10px;
+            overflow: hidden;
+            color: white;
+            margin: 10px;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 75%;
+            object-fit: cover;
+        }
+
+        .movie-card h3 {
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .movie-card .book-now-btn {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #e50914;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 0 0 10px 10px;
+            transition: background-color 0.3s;
+        }
+
+        .movie-card:hover .book-now-btn {
+            display: block;
+        }
+
+        .movie-card .book-now-btn:hover {
+            background-color: #d40813;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="header">
+    <div class="left">
+        <a href="index.html"><img src="Mojila Logo.png" alt="Mojila Logo"></a>
+        <input type="text" placeholder="Search for Movies, Events, Plays, and More">
+    </div>
+    <div class="right">
+        <p class="location">Location: Ahmedabad</p>
+        <button>Sign In</button>
+    </div>
+</header>
+
+<!-- Second Navigation Bar -->
+<div class="second-nav">
+    <div class="left">
+        <a href="movies.html">Movies</a>
+        <a href="#">Stream</a>
+        <a href="#">Events</a>
+        <a href="#">Plays</a>
+        <a href="#">Sports</a>
+        <a href="#">Activities</a>
+        <a href="#">Buzz</a>
+    </div>
+    <div class="right">
+        <a href="#">List Your Show</a>
+        <a href="#">Corporates</a>
+        <a href="#">Offers</a>
+        <a href="#">Gift Cards</a>
+    </div>
+</div>
+
+<!-- Movie Banner -->
+<section class="movie-banner">
+    <img src="pushpa2.jpg" alt="Pushpa 2 Banner">
+</section>
+
+<!-- Movie Info Section -->
+<section class="movie-info">
+    <h1>Pushpa 2</h1>
+    <p>Pushpa Raj returns to claim his throne in the underworld, facing insurmountable challenges and adversaries like never before.</p>
+
+    <div class="star-cast">
+        <h2>Star Cast</h2>
+        <p>Allu Arjun, Rashmika Mandanna, Fahadh Faasil</p>
+    </div>
+    <div class="director">
+        <h2>Director</h2>
+        <p>Sukumar</p>
+    </div>
+
+    <!-- Rating Section -->
+    <div class="rating">
+        <input type="radio" id="star5" name="rating" value="5">
+        <label for="star5">&#9733;</label>
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4">&#9733;</label>
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3">&#9733;</label>
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2">&#9733;</label>
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1">&#9733;</label>
+    </div>
+    <button class="submit-rating-btn">Submit Rating</button>
+    <a href="book.html" class="book-tickets-btn">Book Tickets</a>
+</section>
+
+<!-- You Might Also Like Section -->
+<section class="you-might-like">
+    <h2>You Might Also Like</h2>
+    <div class="movie-cards">
+        <div class="movie-card">
+            <img src="Singham_Again_poster.jpg" alt="Movie 1">
+            <h3>Singhamagain</h3>
+            <a href="#" class="book-now-btn">Book Now</a>
+        </div>
+        <div class="movie-card">
+            <img src="Sabarmati-Report.jpeg" alt="Movie 2">
+            <h3>Sabarmati-Report</h3>
+            <a href="#" class="book-now-btn">Book Now</a>
+        </div>
+        <div class="movie-card">
+            <img src="Bhool_Bhulaiyaa_3_poster.jpg.jpeg" alt="Movie 3">
+            <h3>Bhool_Bhulaiyaa_3</h3>
+            <a href="#" class="book-now-btn">Book Now</a>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
